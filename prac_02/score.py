@@ -24,4 +24,5 @@ def determine_score(score):
         return 'Excellent'
 
 
-main()
+if __name__ == '__main__':
+    main()

@@ -1,4 +1,6 @@
-# from prac_02.score import determine_score
+from prac_02.score import determine_score
+
+
 # With the structure of score.py importing does not work as intended
 
 def main():
@@ -36,20 +38,9 @@ def print_result(score):
     print(determine_score(score))
 
 
-def determine_score(score):
-    """Copied from score.py"""
-    if score < 0 or score > 100:
-        return 'Invalid score'
-    elif score < 50:
-        return 'Bad'
-    elif score < 90:
-        return 'Pass'
-    else:
-        return 'Excellent'
-
-
 def print_stars(score):
     print('*' * score)
 
 
-main()
+if __name__ == '__main__':
+    main()
