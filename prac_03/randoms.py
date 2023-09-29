@@ -13,6 +13,8 @@
 # What did you see on line 3?
 # 3.6915376629471
 # What was the smallest number you could have seen, what was the largest?
-# [2.5, 5.5] exclusive
+# [2.5, 5.5]
 
-import
+import random
+
+print(random.randint(1, 100))
