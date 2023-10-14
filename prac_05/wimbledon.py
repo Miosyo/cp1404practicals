@@ -40,8 +40,8 @@ def get_wimbledon_data():
     """Reads wimbledon.csv and returns a list of lists"""
     with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
         in_file.readline()  # remove and discard the first line as it contains no data
-        csvreader = csv.reader(in_file)
-        wimbledon_data = list(csvreader)
+        csv_reader = csv.reader(in_file)
+        wimbledon_data = list(csv_reader)
     return wimbledon_data
 
 
