@@ -15,8 +15,8 @@ def main():
             user_name = input("Name: ")
         user_to_email[user_name] = email
         user_name, email = get_email()
-    for user in user_to_email:
-        print(f"{user} ({user_to_email[user]})")
+    for user, email in user_to_email.items():
+        print(f"{user} ({email})")
 
 
 def get_email():
