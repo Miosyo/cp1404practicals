@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to [Jesse's](http://www.github.com/jessepurcell) CP1404 Practicals repository, her I have
+Welcome to [Jesse's](http://www.github.com/jessepurcell) CP1404 Practicals repository, here I have
 assembled the collection of practical exercises completed during the third trimester of 2023.
 
 You can access the practical exercises at [CP1404 Practicals](https://github.com/CP1404/Practicals).
