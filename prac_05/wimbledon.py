@@ -26,7 +26,7 @@ def print_winning_countries(wimbledon_data):
 
 def get_champions(wimbledon_data):
     """Returns a dict of wimbledon champions and their win count"""
-    return Counter([champion for champion in [row[2] for row in wimbledon_data]])
+    return Counter(([row[2] for row in wimbledon_data]))
 
 
 def print_champions(champions_to_wins):
