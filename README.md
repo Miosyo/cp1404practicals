@@ -2,8 +2,6 @@
 
 ## Overview
 
----
-
 Welcome to the CP1404 Practicals repository, [Jesse](http://www.github.com/jessepurcell) has
 assembled the collection of practical exercises completed during the third trimester of 2023.
 
@@ -17,8 +15,6 @@ Additionally, you can find the programming patterns used throughout this reposit
 at [Programming Patterns](https://github.com/CP1404/Starter/wiki/Programming-Patterns).
 
 ## Lessons Learned In This Subject About Clean Code
-
----
 
 - The implementation of clean code fosters a more manageable codebase for enhanced maintainability.
 - Clean code epitomizes code that is not only easily comprehensible but also a pleasure to read.
