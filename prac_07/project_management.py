@@ -1,4 +1,7 @@
-"""A program for managing projects"""
+"""A program for managing projects
+Estimate:   45 minutes
+Actual:     .. minutes
+"""
 
 from project import Project
 
@@ -12,36 +15,84 @@ MENU = ("- (L)oad projects\n"
 
 
 def main():
-    projects = load_projects("projects.txt")  # Test line
+    current_filename = "projects.txt"
+    projects = load_projects(current_filename)
 
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            filename = input("Load projects from: ")
-            projects = load_projects(filename)
+            current_filename = input("Load projects from: ")
+            projects = load_projects(current_filename)
         elif choice == "S":
-            pass
+            current_filename = input("Save projects to: ")
+            save_projects(current_filename, projects)
         elif choice == "D":
-            pass
+            display_projects(projects)
         elif choice == "F":
             pass
         elif choice == "A":
-            pass
+            add_project(projects)
         elif choice == "U":
-            pass
+            update_project(projects)
         else:
             print("Invalid Choice!")
         print(MENU)
         choice = input(">>> ").upper()
+    save_projects(current_filename, projects)
 
-    # filename = input("Save projects to: ")
-    # save_projects(filename, projects)
+
+def update_project(projects):
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+
+    choice = get_valid_number("Project Choice: ")
+    while choice not in range(0, len(projects)):
+        print("Invalid choice")
+        choice = get_valid_number("Project Choice: ")
+    project_choice = projects[choice]
+    print(project_choice)
+    new_percentage = get_valid_number("New percentage: ")
+    new_priority = get_valid_number("New priority: ")
+    project_choice.completion_percentage = new_percentage
+    project_choice.priority = new_priority
+
+
+def add_project(projects):
+    print("Let's add a new project")
+    name = get_valid_string("Name: ")
+    start_date = get_valid_string("Start date (dd/mm/yy): ")
+    priority = get_valid_number("Priority: ")
+    cost_estimate = float(get_valid_number("Cost Estimate: $"))
+    percent_complete = get_valid_number("Percent complete: ")
+    projects.append(Project(name, start_date, priority, cost_estimate, percent_complete))
+
+
+def get_valid_string(display_string):
+    """Gets a valid string from the user"""
+    user_input = input(display_string)
+    while user_input == "":
+        print("Input can not be blank.")
+        user_input = input(display_string)
+    return user_input
+
+
+def get_valid_number(display_string):
+    """Gets valid number from user"""
+    is_valid_input = False
+    while not is_valid_input:
+        try:
+            user_input = int(input(display_string))
+            is_valid_input = True
+        except ValueError:
+            print("Invalid input. Not a valid number")
+    return user_input
 
 
 def display_projects(projects):
-    complete_projects = [project for project in projects if project.is_complete()]
-    incomplete_projects = [project for project in projects if not project.is_complete()]
+    """Display projects in two groups. Complete and Incomplete, sorted by priority"""
+    complete_projects = sorted([project for project in projects if project.is_complete()])
+    incomplete_projects = sorted([project for project in projects if not project.is_complete()])
     print("Incomplete Projects:")
     for project in incomplete_projects:
         print(f"\t{project}")
@@ -58,14 +109,15 @@ def load_projects(filename):
             parts = line.split('\t')
             name = parts[0]
             start_date = parts[1]
-            priority = parts[2]
-            cost_estimate = parts[3]
-            completion_percentage = float(parts[4])
+            priority = int(parts[2])
+            cost_estimate = float(parts[3])
+            completion_percentage = int(parts[4])
             projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
     return projects
 
 
 def save_projects(filename, projects):
+    """save projects to filename provided"""
     with open(filename, 'w', encoding="utf-8") as file_out:
         print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='')
         for project in projects:

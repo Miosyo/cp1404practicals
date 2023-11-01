@@ -17,9 +17,10 @@ class Project:
     def __repr__(self):
         return f"({self.__str__()})"
 
-    def __lt__(self, other):
-        return self.priority < other.priority
-
     def is_complete(self):
         """Return true if completion percentage is >= 100%"""
         return self.completion_percentage >= 100
+
+    def __lt__(self, other):
+        """Compare priority of both object"""
+        return self.priority < other.priority
