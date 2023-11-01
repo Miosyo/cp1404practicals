@@ -7,7 +7,7 @@ FILENAME = "projects.txt"
 
 def main():
     projects = load_projects()
-
+    print(projects)
     save_projects(projects)
 
 
