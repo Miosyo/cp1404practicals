@@ -27,10 +27,10 @@ class ProgrammingLanguage:
 
 def run_tests():
     """Run simple tests/demos on ProgrammingLanguage class."""
-    ruby = ProgrammingLanguage("Ruby", "Dynamic", True, 1995, "No")
-    python = ProgrammingLanguage("Python", "Dynamic", True, 1991, "No")
-    visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991, "No")
-    c_plus_plus = ProgrammingLanguage("C++", "Static", "No", 1983, "Yes")
+    ruby = ProgrammingLanguage("Ruby", "Dynamic", True, 1995, False)
+    python = ProgrammingLanguage("Python", "Dynamic", True, 1991, False)
+    visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991, False)
+    c_plus_plus = ProgrammingLanguage("C++", "Static", "No", 1983, True)
 
     languages = [ruby, python, visual_basic, c_plus_plus]
     print(python)
@@ -39,6 +39,9 @@ def run_tests():
     for language in languages:
         if language.is_dynamic():
             print(language.name)
+
+    print("The languages that support pointer arithmetic are:")
+    print("\n".join([language.name for language in languages if language.pointer_arithmetic]))
 
 
 if __name__ == "__main__":
