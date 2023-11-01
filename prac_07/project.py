@@ -10,7 +10,16 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def __str__(self):
-        return f"Project: {self.name}"
+        # Organise Pantry, start: 20/07/2022, priority 1, estimate: $25.00, completion: 55%
+        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate},"
+                f" completion: {self.completion_percentage}%")
 
     def __repr__(self):
         return f"({self.__str__()})"
+
+    def __lt__(self, other):
+        return self.priority < other.priority
+
+    def is_complete(self):
+        """Return true if completion percentage is >= 100%"""
+        return self.completion_percentage >= 100
