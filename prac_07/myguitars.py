@@ -10,6 +10,7 @@ FILENAME = "guitars.csv"
 
 def main():
     guitars = load_guitars()
+    print_guitars(guitars)
 
 
 def load_guitars():
@@ -24,6 +25,12 @@ def load_guitars():
             cost = float(parts[2])
             guitars.append(Guitar(name, year, cost))
     return guitars
+
+
+def print_guitars(guitars):
+    print("My guitars:")
+    for guitar in guitars:
+        print(f"- {guitar}")
 
 
 if __name__ == '__main__':
