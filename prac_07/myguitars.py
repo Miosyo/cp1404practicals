@@ -1,6 +1,6 @@
 """A program to keep track of guitars someone owns
-Estimated Time: 45mins
-Actual Time:
+Estimated Time: 45 minutes
+Actual Time: 35 minutes
 """
 
 from guitar import Guitar
