@@ -28,6 +28,7 @@ def load_guitars():
 
 
 def print_guitars(guitars):
+    guitars.sort(reverse=True)
     print("My guitars:")
     for guitar in guitars:
         print(f"- {guitar}")
