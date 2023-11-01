@@ -2,18 +2,19 @@
 
 from project import Project
 
-FILENAME = "projects.txt"
-
 
 def main():
-    projects = load_projects()
+    filename = input("Load projects from: ")
+    projects = load_projects(filename)
     print(projects)
-    save_projects(projects)
+
+    filename = input("Save projects to: ")
+    save_projects(filename, projects)
 
 
-def load_projects():
+def load_projects(filename):
     projects = []
-    with open(FILENAME, encoding="utf-8") as file_in:
+    with open(filename, encoding="utf-8") as file_in:
         file_in.readline()  # Remove heading
         for line in file_in.readlines():
             parts = line.split('\t')
@@ -26,8 +27,12 @@ def load_projects():
     return projects
 
 
-def save_projects(projects):
-    pass
+def save_projects(filename, projects):
+    with open(filename, 'w', encoding="utf-8") as file_out:
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='')
+        for project in projects:
+            print(f"{project.name}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+                  file=file_out, end='')
 
 
 if __name__ == '__main__':
