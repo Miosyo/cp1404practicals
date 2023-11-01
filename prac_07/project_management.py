@@ -137,8 +137,8 @@ def save_projects(filename, projects):
     with open(filename, 'w', encoding="utf-8") as file_out:
         print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='\n')
         for project in projects:
-            print(f"{project.name}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
-                  file=file_out, end='')
+            print(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+                  file=file_out, end='\n')
 
 
 if __name__ == '__main__':
