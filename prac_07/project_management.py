@@ -3,7 +3,6 @@ Estimate:   45 minutes
 Actual:     90 minutes
 """
 import datetime
-from datetime import date
 from project import Project
 
 MENU = ("- (L)oad projects\n"
@@ -50,7 +49,8 @@ def filter_projects(projects):
     date_to_filter_by_string = get_valid_date("Show projects that start after (dd/mm/yy): ")
     date_to_filter_by = datetime.datetime.strptime(date_to_filter_by_string, "%d/%m/%Y").date()
     projects_after_date = [project for project in projects
-                           if date_to_filter_by < datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date()]
+                           if date_to_filter_by < datetime.datetime.strptime
+                           (project.start_date, "%d/%m/%Y").date()]
     for project in projects_after_date:
         print(project)
 
@@ -85,10 +85,10 @@ def add_project(projects):
 
 def get_valid_date(display_string):
     """Get a valid date from the user."""
-    date_string = get_valid_string("Start date (dd/mm/yy): ")
+    date_string = get_valid_string(display_string)
     while not is_valid_date(date_string):
         print("Invalid date")
-        date_string = get_valid_string("Start date (dd/mm/yy): ")
+        date_string = get_valid_string(display_string)
     return date_string
 
 
@@ -150,17 +150,20 @@ def load_projects(filename):
             priority = int(parts[2])
             cost_estimate = float(parts[3])
             completion_percentage = int(parts[4])
-            projects.append(Project(name, start_date, priority, cost_estimate, completion_percentage))
+            projects.append(
+                Project(name, start_date, priority, cost_estimate, completion_percentage))
     return projects
 
 
 def save_projects(filename, projects):
     """save projects to filename provided"""
     with open(filename, 'w', encoding="utf-8") as file_out:
-        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='\n')
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage",
+              file=file_out, end='\n')
         for project in projects:
             print(
-                f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+                f"{project.name}\t{project.start_date}\t{project.priority}\t"
+                f"{project.cost_estimate}\t{project.completion_percentage}",
                 file=file_out, end='\n')
 
 

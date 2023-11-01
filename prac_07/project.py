@@ -2,6 +2,7 @@
 
 
 class Project:
+    """Contain the data for a project."""
     def __init__(self, name, start_date, priority, cost_estimate, completion_percentage):
         """Initialize the class variables."""
         self.name = name
@@ -12,7 +13,8 @@ class Project:
 
     def __str__(self):
         """Return a string representation of the object"""
-        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate},"
+        return (f"{self.name}, start: {self.start_date}, priority {self.priority}, "
+                f"estimate: ${self.cost_estimate},"
                 f" completion: {self.completion_percentage}%")
 
     def __repr__(self):
