@@ -9,6 +9,7 @@ FILENAME = "guitars.csv"
 
 
 def main():
+    """A program to load, save and display guitars"""
     guitars = load_guitars()
     print_guitars(guitars)
     get_guitars_from_user(guitars)
@@ -17,6 +18,7 @@ def main():
 
 
 def get_guitars_from_user(guitars):
+    """Ask the user to input a new guitar until an empty name is entered"""
     print("Add another guitar?")
     guitar_name = input("Name: ")
     while guitar_name != "":
@@ -27,6 +29,7 @@ def get_guitars_from_user(guitars):
 
 
 def load_guitars():
+    """Load guitars from a file"""
     guitars = []
     with open(FILENAME, encoding="utf-8") as file_in:
         file_in.readline()
@@ -41,12 +44,14 @@ def load_guitars():
 
 
 def save_guitars(guitars):
+    """Save guitars to a file"""
     with open(FILENAME, 'w', encoding="utf-8") as file_out:
         for guitar in guitars:
             file_out.write(f"{guitar.name},{guitar.year},{guitar.cost}\n")
 
 
 def print_guitars(guitars):
+    """Sort and print the guitars"""
     guitars.sort(reverse=True)
     print("My guitars:")
     for guitar in guitars:
