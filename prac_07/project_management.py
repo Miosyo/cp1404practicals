@@ -1,6 +1,6 @@
 """A program for managing projects
 Estimate:   45 minutes
-Actual:     .. minutes
+Actual:     90 minutes
 """
 import datetime
 from datetime import date
@@ -16,6 +16,7 @@ MENU = ("- (L)oad projects\n"
 
 
 def main():
+    """Let the user read, update, filter and save projects."""
     current_filename = "projects.txt"
     projects = load_projects(current_filename)
 
@@ -40,10 +41,12 @@ def main():
             print("Invalid Choice!")
         print(MENU)
         choice = input(">>> ").upper()
+    print("Thank you for using custom-built project management software")
     save_projects(current_filename, projects)
 
 
 def filter_projects(projects):
+    """Filters projects by a given date and prints them out for the user."""
     date_to_filter_by_string = get_valid_date("Show projects that start after (dd/mm/yy): ")
     date_to_filter_by = datetime.datetime.strptime(date_to_filter_by_string, "%d/%m/%Y").date()
     projects_after_date = [project for project in projects
@@ -53,6 +56,7 @@ def filter_projects(projects):
 
 
 def update_project(projects):
+    """Update the completion percentage and priority of a project."""
     for i, project in enumerate(projects):
         print(f"{i} {project}")
 
@@ -69,9 +73,9 @@ def update_project(projects):
 
 
 def add_project(projects):
+    """Get user input and add new project to projects list."""
     print("Let's add a new project")
     name = get_valid_string("Name: ")
-    # start_date = get_valid_string("Start date (dd/mm/yy): ")
     start_date = get_valid_date("Start date (dd/mm/yy): ")
     priority = get_valid_number("Priority: ")
     cost_estimate = float(get_valid_number("Cost Estimate: $"))
@@ -80,22 +84,25 @@ def add_project(projects):
 
 
 def get_valid_date(display_string):
+    """Get a valid date from the user."""
     date_string = get_valid_string("Start date (dd/mm/yy): ")
     while not is_valid_date(date_string):
+        print("Invalid date")
         date_string = get_valid_string("Start date (dd/mm/yy): ")
     return date_string
 
 
 def is_valid_date(date_string):
+    """Check to see if date is valid by passing it into datetime."""
     try:
-        date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+        datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
         return True
     except ValueError:
         return False
 
 
 def get_valid_string(display_string):
-    """Gets a valid string from the user"""
+    """Gets a valid string from the user."""
     user_input = input(display_string)
     while user_input == "":
         print("Input can not be blank.")
@@ -104,7 +111,7 @@ def get_valid_string(display_string):
 
 
 def get_valid_number(display_string):
-    """Gets valid number from user"""
+    """Gets valid number from user."""
     is_valid_input = False
     while not is_valid_input:
         try:
@@ -116,7 +123,7 @@ def get_valid_number(display_string):
 
 
 def display_projects(projects):
-    """Display projects in two groups. Complete and Incomplete, sorted by priority"""
+    """Display projects in two groups. Complete and Incomplete, sorted by priority."""
     complete_projects = sorted([project for project in projects if project.is_complete()])
     incomplete_projects = sorted([project for project in projects if not project.is_complete()])
     print("Incomplete Projects:")
@@ -128,6 +135,11 @@ def display_projects(projects):
 
 
 def load_projects(filename):
+    """load projects from specified file.
+
+    Format is: Name,Start Date,Priority,Cost Estimate,Completion Percentage
+    Seperated by a '\t'.
+    """
     projects = []
     with open(filename, encoding="utf-8") as file_in:
         file_in.readline()  # Remove heading
