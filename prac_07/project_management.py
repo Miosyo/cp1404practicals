@@ -2,7 +2,7 @@
 Estimate:   45 minutes
 Actual:     .. minutes
 """
-
+import datetime
 from project import Project
 
 MENU = ("- (L)oad projects\n"
@@ -61,11 +61,27 @@ def update_project(projects):
 def add_project(projects):
     print("Let's add a new project")
     name = get_valid_string("Name: ")
-    start_date = get_valid_string("Start date (dd/mm/yy): ")
+    # start_date = get_valid_string("Start date (dd/mm/yy): ")
+    start_date = get_valid_date("Start date (dd/mm/yy): ")
     priority = get_valid_number("Priority: ")
     cost_estimate = float(get_valid_number("Cost Estimate: $"))
     percent_complete = get_valid_number("Percent complete: ")
     projects.append(Project(name, start_date, priority, cost_estimate, percent_complete))
+
+
+def get_valid_date(display_string):
+    date_string = get_valid_string("Start date (dd/mm/yy): ")
+    while not is_valid_date(date_string):
+        date_string = get_valid_string("Start date (dd/mm/yy): ")
+    return date_string
+
+
+def is_valid_date(date_string):
+    try:
+        date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+        return True
+    except ValueError:
+        return False
 
 
 def get_valid_string(display_string):
@@ -119,7 +135,7 @@ def load_projects(filename):
 def save_projects(filename, projects):
     """save projects to filename provided"""
     with open(filename, 'w', encoding="utf-8") as file_out:
-        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='')
+        print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='\n')
         for project in projects:
             print(f"{project.name}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
                   file=file_out, end='')
