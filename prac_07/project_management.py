@@ -3,6 +3,7 @@ Estimate:   45 minutes
 Actual:     .. minutes
 """
 import datetime
+from datetime import date
 from project import Project
 
 MENU = ("- (L)oad projects\n"
@@ -30,7 +31,7 @@ def main():
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            pass
+            filter_projects(projects)
         elif choice == "A":
             add_project(projects)
         elif choice == "U":
@@ -40,6 +41,15 @@ def main():
         print(MENU)
         choice = input(">>> ").upper()
     save_projects(current_filename, projects)
+
+
+def filter_projects(projects):
+    date_to_filter_by_string = get_valid_date("Show projects that start after (dd/mm/yy): ")
+    date_to_filter_by = datetime.datetime.strptime(date_to_filter_by_string, "%d/%m/%Y").date()
+    projects_after_date = [project for project in projects
+                           if date_to_filter_by < datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date()]
+    for project in projects_after_date:
+        print(project)
 
 
 def update_project(projects):
@@ -137,8 +147,9 @@ def save_projects(filename, projects):
     with open(filename, 'w', encoding="utf-8") as file_out:
         print("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage", file=file_out, end='\n')
         for project in projects:
-            print(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
-                  file=file_out, end='\n')
+            print(
+                f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate}\t{project.completion_percentage}",
+                file=file_out, end='\n')
 
 
 if __name__ == '__main__':
