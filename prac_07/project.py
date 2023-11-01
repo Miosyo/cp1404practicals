@@ -15,6 +15,7 @@ class Project:
                 f" completion: {self.completion_percentage}%")
 
     def __repr__(self):
+        """Returns the string representation of the object wrapped in brackets"""
         return f"({self.__str__()})"
 
     def is_complete(self):
