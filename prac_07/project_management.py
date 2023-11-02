@@ -23,10 +23,10 @@ def main():
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "L":
-            current_filename = input("Load projects from: ")
+            current_filename = get_valid_string("Load projects from: ")
             projects = load_projects(current_filename)
         elif choice == "S":
-            current_filename = input("Save projects to: ")
+            current_filename = get_valid_string("Save projects to: ")
             save_projects(current_filename, projects)
         elif choice == "D":
             display_projects(projects)
@@ -66,10 +66,30 @@ def update_project(projects):
         choice = get_valid_number("Project Choice: ")
     project_choice = projects[choice]
     print(project_choice)
-    new_percentage = get_valid_number("New percentage: ")
-    new_priority = get_valid_number("New priority: ")
-    project_choice.completion_percentage = new_percentage
-    project_choice.priority = new_priority
+
+    is_valid_number = False
+    new_percentage_string = input("New percentage: ")
+    if new_percentage_string:
+        while not is_valid_number:
+            try:
+                new_percentage = int(new_percentage_string)
+                project_choice.completion_percentage = new_percentage
+                is_valid_number = True
+            except TypeError:
+                print("Invalid number")
+                new_percentage_string = input("New percentage: ")
+
+    is_valid_number = False
+    new_priority_string = input("New priority: ")
+    if new_priority_string:
+        while not is_valid_number:
+            try:
+                new_priority = int(new_priority_string)
+                project_choice.priority = new_priority
+                is_valid_number = True
+            except TypeError:
+                print("Invalid number")
+                new_priority_string = input("Priority: ")
 
 
 def add_project(projects):
