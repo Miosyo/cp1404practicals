@@ -67,6 +67,7 @@ def update_project(projects):
     project_choice = projects[choice]
     print(project_choice)
 
+    # Should probably be a function (Maybe update get_valid_number()???)
     is_valid_number = False
     new_percentage_string = input("New percentage: ")
     if new_percentage_string:
@@ -79,6 +80,7 @@ def update_project(projects):
                 print("Invalid number")
                 new_percentage_string = input("New percentage: ")
 
+    # DRY
     is_valid_number = False
     new_priority_string = input("New priority: ")
     if new_priority_string:
