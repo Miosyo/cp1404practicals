@@ -48,9 +48,9 @@ def filter_projects(projects):
     """Filters projects by a given date and prints them out for the user."""
     date_to_filter_by_string = get_valid_date("Show projects that start after (dd/mm/yy): ")
     date_to_filter_by = datetime.datetime.strptime(date_to_filter_by_string, "%d/%m/%Y").date()
-    projects_after_date = [project for project in projects
-                           if date_to_filter_by < datetime.datetime.strptime
-                           (project.start_date, "%d/%m/%Y").date()]
+    projects_after_date = sorted([project for project in projects
+                                  if date_to_filter_by < datetime.datetime.strptime
+                                  (project.start_date, "%d/%m/%Y").date()])
     for project in projects_after_date:
         print(project)
 
