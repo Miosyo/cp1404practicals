@@ -1,5 +1,6 @@
 """
-
+Estimated Time: 20
+Actual Time: 30
 """
 
 from kivy.app import App
@@ -21,6 +22,7 @@ class ConvertMilesKm(App):
         return self.root
 
     def handle_conversion(self):
+        """Convert miles to km and store in conversion_results string."""
         try:
             miles = float(self.root.ids.text_input.text)
             self.conversion_result = str(miles * self.MILES_TO_KM_FACTOR)
@@ -28,6 +30,7 @@ class ConvertMilesKm(App):
             self.conversion_result = '0.0'
 
     def handle_increment(self, amount):
+        """Increment the input_field by a passed in amount."""
         input_field_text = self.root.ids.text_input.text
         try:
             input_field_number = float(input_field_text)
@@ -36,7 +39,6 @@ class ConvertMilesKm(App):
             # Set value to a valid number
             input_field_number = amount
         self.root.ids.text_input.text = str(input_field_number)
-
 
 
 ConvertMilesKm().run()
