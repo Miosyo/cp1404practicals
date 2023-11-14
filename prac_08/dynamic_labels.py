@@ -9,7 +9,7 @@ from kivy.core.window import Window
 from kivy.uix.label import Label
 
 
-class SquareNumberApp(App):
+class DynamicLabelsApp(App):
     """Dynamically create labels from a list of names."""
 
     def __init__(self, **kwargs):
@@ -32,4 +32,4 @@ class SquareNumberApp(App):
             self.root.ids.main.add_widget(temp_label)
 
 
-SquareNumberApp().run()
+DynamicLabelsApp().run()
