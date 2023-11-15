@@ -3,6 +3,7 @@ from prac_09.silver_service_taxi import SilverServiceTaxi
 
 
 def main():
+    """Silver service taxi tests."""
     test_taxi = SilverServiceTaxi("Test Taxi", 100, 2)
     print(test_taxi)
     test_taxi.drive(18)
