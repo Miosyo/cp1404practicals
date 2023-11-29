@@ -70,12 +70,16 @@ doctest.testmod()
 # and one more you decide (one that is valid!)
 # test this and watch the tests fail
 # then write the body of the function so that the tests pass
-def format_sentence(sentence):
+def format_sentence(sentence: str):
     """Format a sentence to start with a capital and end with a fullstop.
     >>> format_sentence("hello")
-    # 'hello' -> 'Hello.'
+    'Hello.'
     >>> format_sentence("It is an ex parrot.")
-    # 'It is an ex parrot.' -> 'It is an ex parrot.'
+    'It is an ex parrot.'
     >>> format_sentence("blessed are the cheesemakers")
-    # 'blessed are the cheesemakers' -> 'Blessed are the cheesemaker.'
+    'Blessed are the cheesemakers.'
     """
+    new_sentence: str = sentence.capitalize()
+    if new_sentence[-1] != '.':
+        new_sentence += '.'
+    return new_sentence
