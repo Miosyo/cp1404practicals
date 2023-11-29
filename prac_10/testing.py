@@ -57,6 +57,7 @@ run_tests()
 # (PyCharm may see your >>> doctest comments and run doctests anyway.)
 doctest.testmod()
 
+
 # TODO: 4. Fix the failing is_long_word function
 # (don't change the tests, change the function!)
 
@@ -69,3 +70,12 @@ doctest.testmod()
 # and one more you decide (one that is valid!)
 # test this and watch the tests fail
 # then write the body of the function so that the tests pass
+def format_sentence(sentence):
+    """Format a sentence to start with a capital and end with a fullstop.
+    >>> format_sentence("hello")
+    # 'hello' -> 'Hello.'
+    >>> format_sentence("It is an ex parrot.")
+    # 'It is an ex parrot.' -> 'It is an ex parrot.'
+    >>> format_sentence("blessed are the cheesemakers")
+    # 'blessed are the cheesemakers' -> 'Blessed are the cheesemaker.'
+    """
